@@ -1,0 +1,90 @@
+.taskBoard {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.taskBoard-Column {
+    position: relative;
+    width: 100%;
+    background-color: #EEE;
+
+}
+.taskBoard-TodoTitle {
+    font-size: 2em;
+    margin-left: 1em;
+}
+.taskBoard-TodoElement {
+    background-color: #FFF;
+    position: relative;
+    margin-left: 0.3em;
+    margin-right: 0.3em;
+    margin-top: 0.1em;
+    border-radius: 0.3em;
+    padding: 1.5em;
+    box-shadow: 0 0 0.1em 0.05em #CCC inset;
+}
+.taskBoard-element-button {
+    margin: 0.1em;
+}
+.taskBoard-darker {
+    background-color: #DDD;
+}
+.taskBoard-element-title {
+    font-size: 1.1em;
+}
+.taskBoard-element-type {
+    font-size: 0.8em;
+    color: #555;
+}
+
+.taskBoard-dropManu {
+    width: 98%;
+}
+
+#taskBoard-dropManu-button {
+    font-size: 1.7em;
+}
+
+@media (min-width: 900px) {
+    .taskBoard {
+        display: grid;
+        grid-template-columns: 25% 25% 25% 25%;
+    }
+    .taskBoard-dropManu-frame {
+        display: none !important;
+    }
+    .taskBoard-Column {
+        display: block !important;
+    }
+}
+
+@media (max-width : 900px) and (min-width: 500px) {
+    .taskBoard {
+        display: grid;
+        grid-template-columns: 50% 50%;
+    }
+    .taskBoard-dropManu-frame {
+        display: none !important;
+    }
+    .taskBoard-Column {
+        display: block !important;
+    }
+}
+
+@media (max-width : 500px) {
+    .taskBoard {
+        display: block;
+    }
+    .taskBoard-dropManu-frame {
+        display: block;
+    }
+    .taskBoard-Column {
+        display: none;
+        min-height: 92%;
+        padding-top: 1em;
+    }
+    .taskBoard-TodoTitle {
+        display: none;
+    }
+
+}
