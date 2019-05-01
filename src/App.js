@@ -8,7 +8,7 @@ import TaskList from "./taskList/TaskList";
 class App extends Component {
 
   state = {
-    tasks: [],
+    accounts: [],
     newTaskID: 0
   };
 
@@ -17,9 +17,9 @@ class App extends Component {
   }
 
   getData() {
-    axios.get('http://my-json-server.typicode.com/KingLogar/FakeDB1/posts')
+    axios.get('https://my-json-server.typicode.com/bnissen24/Project2DB')
         .then(response => {
-          this.setState({ tasks: response.data });
+          this.setState({ accounts: response.data });
         }).catch(error => {
       this.setState({ errorMessage: error.message });
     });
