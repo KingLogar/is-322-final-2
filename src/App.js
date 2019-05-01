@@ -17,81 +17,11 @@ class App extends Component {
   }
 
   getData() {
-    axios.get('https://my-json-server.typicode.com/bnissen24/Project2DB')
+    axios.get('https://my-json-server.typicode.com/bnissen24/Project2DB/accounts')
         .then(response => {
           this.setState({ accounts: response.data });
         }).catch(error => {
       this.setState({ errorMessage: error.message });
-    });
-  }
-
-  taskMovingAction = {
-    startOnclick: (id) => {
-      let tasks = this.state.tasks;
-      for (let task of tasks) {
-        if (task.id === id) {
-          task.column = "in-progress";
-        }
-      }
-      this.setState({tasks});
-    },
-    sendBackOnclick: (id) => {
-      let tasks = this.state.tasks;
-      for (let task of tasks) {
-        if (task.id === id) {
-          task.column = "todo";
-        }
-      }
-      this.setState({tasks});
-    },
-    reviewOnclick: (id) => {
-      let tasks = this.state.tasks;
-      for (let task of tasks) {
-        if (task.id === id) {
-          task.column = "review";
-        }
-      }
-      this.setState({tasks});
-    },
-    backToWorkOnclick: (id) => {
-      let tasks = this.state.tasks;
-      for (let task of tasks) {
-        if (task.id === id) {
-          task.column = "in-progress";
-        }
-      }
-      this.setState({tasks});
-    },
-    doneOnclick: (id) => {
-      let tasks = this.state.tasks;
-      for (let task of tasks) {
-        if (task.id === id) {
-          task.column = "done";
-        }
-      }
-      this.setState({tasks});
-    },
-    reviewAgainOnclick: (id) => {
-      let tasks = this.state.tasks;
-      for (let task of tasks) {
-        if (task.id === id) {
-          task.column = "review";
-        }
-      }
-      this.setState({tasks});
-    }
-  };
-
-  newTask = (taskName,type) => {
-    console.log(this.state.tasks);
-    this.state.tasks.push({
-      id: this.state.newTaskID,
-      title: taskName,
-      type: type,
-      column: "todo"
-    });
-    this.setState({
-      newTaskID: this.state.newTaskID + 1
     });
   }
 
@@ -118,12 +48,6 @@ class App extends Component {
             </ul>
           </div>
         </nav>
-    );
-
-    let taskList = (
-        <div id="taskList" style={{display:"none"}}>
-            <TaskList tasks={this.state.tasks} />
-        </div>
     );
 
     let addTask = (
