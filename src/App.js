@@ -58,7 +58,7 @@ class App extends Component {
 
     return [
         navbar,
-        <TaskBoard t={this.state.tasks} action={this.taskMovingAction}/>,
+        <TaskBoard t={this.state.accounts} action={this.taskMovingAction}/>,
         taskList,
         addTask
     ];
