@@ -3,7 +3,6 @@ import TaskBoard from './taskBoard/index';
 import axios from 'axios';
 import Add from './Add';
 import { toGridView, toTaskList, toAddTask } from './navbarNavigation';
-import TaskList from "./taskList/TaskList";
 
 class App extends Component {
 
@@ -23,6 +22,12 @@ class App extends Component {
         }).catch(error => {
       this.setState({ errorMessage: error.message });
     });
+  }
+
+  accountsMoving = {
+      redirect: (id) => {
+          //Something will go here, maybe.
+      }
   }
 
   render() {
@@ -50,6 +55,8 @@ class App extends Component {
         </nav>
     );
 
+
+
     let addTask = (
         <div id="addTask" style={{display:"none"}}>
           <Add onSubmit={this.newTask} />
@@ -58,7 +65,7 @@ class App extends Component {
 
     return [
         navbar,
-        <TaskBoard t={this.state.accounts} action={this.taskMovingAction}/>,
+        <TaskBoard accounts={this.state.accounts} />,
         addTask
     ];
   }

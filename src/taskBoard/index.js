@@ -6,10 +6,10 @@ class AccountBoard extends Component{
         let accounts = this.props.accounts;
         let accountsArr = [];
 
-        for (let account of accounts.entries()) {
+        for (let account of accounts) {
 
             accountsArr.push(
-                <Element.AccountElement title={account.name} bal={account.balance} id={account.id} redirect={this.props.action.redirect}/>
+                <Element.AccountElement title={account.name} bal={account.balance} id={account._id} />
                 );
             }
 
@@ -23,13 +23,11 @@ class AccountBoard extends Component{
             </div>
         );
         let accBoard = (
-            <div id="gridView" className="taskBoard">
-                <div id="taskBoard-todoColumn" className="taskBoard-Column taskBoard-darker" style={{display: "block"}}>
-                    <div className="taskBoard-TodoTitle">
-                        Accounts
-                    </div>
-                    <div>{accountsArr}</div>
+            <div id="taskBoard-todoColumn" className="taskBoard-Column taskBoard-darker" style={{display: "block"}}>
+                <div className="taskBoard-TodoTitle">
+                    Accounts
                 </div>
+                <div>{accountsArr}</div>
             </div>
         );
 
