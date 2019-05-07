@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import Element from './taskElements';
-import {toTodo,toInProgress,toReview,toDone} from './changeColunmInSmallScreen';
 
-class TaskBoard extends Component{
+class AccountBoard extends Component{
     render() {
         let accs = this.props.accounts;
         let accounts = [];
@@ -10,7 +9,7 @@ class TaskBoard extends Component{
         for (let acc of accs) {
 
             accounts.push(
-                <Element.TodoElement title={acc.name} bal={acc.balance} id={acc.id} /*startOnclick={this.props.action.startOnclick*/} />
+                <Element.AccountElement title={acc.name} bal={acc.balance} id={acc.id} redirect={this.props.action.redirect}/>
                 );
             }
 
@@ -21,30 +20,21 @@ class TaskBoard extends Component{
                         aria-haspopup="true" aria-expanded="false">
                     Accounts
                 </button>
-                <div className="dropdown-menu taskBoard-dropManu">
-                    <button className="dropdown-item btn-lg" type="button" onClick={toTodo}>To do</button>
-                    <div className="dropdown-divider"></div>
-                    <button className="dropdown-item btn-lg" type="button" onClick={toInProgress}>In Progress</button>
-                    <div className="dropdown-divider"></div>
-                    <button className="dropdown-item btn-lg" type="button" onClick={toReview}>Review</button>
-                    <div className="dropdown-divider"></div>
-                    <button className="dropdown-item btn-lg" type="button" onClick={toDone}>Done</button>
-                </div>
             </div>
         );
-        let taskBoard = (
+        let accBoard = (
             <div id="gridView" className="taskBoard">
                 <div id="taskBoard-todoColumn" className="taskBoard-Column taskBoard-darker" style={{display: "block"}}>
                     <div className="taskBoard-TodoTitle">
                         Accounts
                     </div>
-                    <div>{}</div>
+                    <div>{accounts}</div>
                 </div>
             </div>
         );
 
-        return [menu,taskBoard]
+        return [menu,accBoard]
     }
 }
 
-export default TaskBoard;
+export default AccountBoard;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class TodoElement extends Component{
+class AccountElement extends Component{
     render() {
         return (<div className='taskBoard-TodoElement'>
             <div className='taskBoard-element-title'>{ this.props.title }</div>
