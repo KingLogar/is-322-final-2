@@ -11,8 +11,5 @@ class AccountElement extends Component{
 }
 
 export default {
-    TodoElement: TodoElement,
-    InProgressElement: InProgressElement,
-    ReviewElement: ReviewElement,
-    DoneElement: DoneElement
+    AccountElement: AccountElement
 }

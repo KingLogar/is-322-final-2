@@ -3,13 +3,13 @@ import Element from './taskElements';
 
 class AccountBoard extends Component{
     render() {
-        let accs = this.props.accounts;
-        let accounts = [];
+        let accounts = this.props.accounts;
+        let accountsArr = [];
 
-        for (let acc of accs) {
+        for (let account of accounts.entries()) {
 
-            accounts.push(
-                <Element.AccountElement title={acc.name} bal={acc.balance} id={acc.id} redirect={this.props.action.redirect}/>
+            accountsArr.push(
+                <Element.AccountElement title={account.name} bal={account.balance} id={account.id} redirect={this.props.action.redirect}/>
                 );
             }
 
@@ -28,7 +28,7 @@ class AccountBoard extends Component{
                     <div className="taskBoard-TodoTitle">
                         Accounts
                     </div>
-                    <div>{accounts}</div>
+                    <div>{accountsArr}</div>
                 </div>
             </div>
         );
