@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import TaskBoard from './taskBoard/index';
 import axios from 'axios';
 import Add from './Add';
-import { toGridView, toTaskList, toAddTask } from './navbarNavigation';
+import {BrowserRouter, Route} from "react-router-dom";
+import PageTabs from "./PageTabs";
 
 class App extends Component {
 
   state = {
     accounts: [],
-    newTaskID: 0
+    currentPage: '/',
+    newAccID: 0
   };
 
   componentDidMount() {
@@ -24,38 +26,22 @@ class App extends Component {
     });
   }
 
-  accountsMoving = {
-      redirect: (id) => {
-          //Something will go here, maybe.
-      }
-  }
-
   render() {
     let navbar = (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <a className="navbar-brand" href="#">My Todo List</a>
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
+          <h1>My Accounts</h1>
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav mr-auto">
-              <li className="nav-item active">
-                <button type="button" className="nav-link btn btn-light ml-3" onClick={toGridView} >Grid View <span className="sr-only">(current)</span></button>
-              </li>
-              <li className="nav-item">
-                <button className="nav-link btn btn-light ml-1" onClick={toTaskList}>Task List</button>
-              </li>
-              <li className="nav-item">
-                <button className="nav-link btn btn-light ml-1" onClick={toAddTask}>Add Task</button>
-              </li>
-            </ul>
+            <BrowserRouter>
+                <PageTabs/>
+                <div>
+                    <Route path="/" exact component={TaskBoard} />
+                    <Route path="/add" componenet={Add} />
+                </div>
+            </BrowserRouter>
           </div>
         </nav>
     );
-
-
 
     let addTask = (
         <div id="addTask" style={{display:"none"}}>
