@@ -33,7 +33,7 @@ class App extends Component {
 
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <BrowserRouter>
-                <PageTabs/>
+                <PageTabs accounts={this.state.accounts}/>
                 <div>
                     <Route path="/" exact component={TaskBoard} />
                     <Route path="/add" componenet={Add} />
