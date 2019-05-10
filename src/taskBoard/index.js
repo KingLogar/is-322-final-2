@@ -6,6 +6,8 @@ class AccountBoard extends Component{
         let accounts = this.props.accounts;
         let accountsArr = [];
 
+        console.log(accounts);
+
         for (let account of accounts) {
 
             accountsArr.push(

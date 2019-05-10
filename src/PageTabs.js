@@ -3,8 +3,7 @@ import {Link} from 'react-router-dom';
 
 class PageTabs extends React.Component {
     state ={
-        currentPage: '/',
-        accounts: this.props.accounts
+        currentPage: '/'
     }
 
     isActiveTab(tab){

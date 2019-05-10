@@ -25,17 +25,16 @@ class App extends Component {
       this.setState({ errorMessage: error.message });
     });
   }
-
+  //<PageTabs accounts={this.state.accounts}/>
   render() {
     let navbar = (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
           <h1>My Accounts</h1>
-
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <BrowserRouter>
-                <PageTabs accounts={this.state.accounts}/>
+
                 <div>
-                    <Route path="/" exact component={TaskBoard} />
+                    <Route path="/" exact component={TaskBoard} accounts={this.state.accounts}/>
                     <Route path="/add" componenet={Add} />
                 </div>
             </BrowserRouter>
@@ -50,9 +49,7 @@ class App extends Component {
     );
 
     return [
-        navbar,
-        <TaskBoard accounts={this.state.accounts} />,
-        addTask
+        navbar
     ];
   }
 }
