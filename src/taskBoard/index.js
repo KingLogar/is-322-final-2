@@ -25,11 +25,13 @@ class AccountBoard extends Component{
             </div>
         );
         let accBoard = (
-            <div id="taskBoard-todoColumn" className="taskBoard-Column taskBoard-darker" style={{display: "block"}}>
-                <div className="taskBoard-TodoTitle">
-                    Accounts
+            <div id="gridView">
+                <div id="taskBoard-todoColumn" className="taskBoard-Column taskBoard-darker" style={{display: "block"}}>
+                    <div className="taskBoard-TodoTitle">
+                        Accounts
+                    </div>
+                    <div>{accountsArr}</div>
                 </div>
-                <div>{accountsArr}</div>
             </div>
         );
 
