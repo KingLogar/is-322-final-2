@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Element from './taskElements';
 
 class AccountBoard extends Component{
+
     render() {
         let accounts = this.props.accounts;
         let accountsArr = [];
