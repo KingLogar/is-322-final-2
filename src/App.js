@@ -4,6 +4,7 @@ import Add from './Add';
 import { toGridView, toAddTask, toList } from './navbarNavigation';
 import TaskBoard from './taskBoard/index';
 import TaskList from './taskList/TaskList';
+import AccountElement from './taskBoard/taskElements';
 
 
 class App extends Component {
@@ -52,12 +53,6 @@ class App extends Component {
         });
     };
 
-  toInfo = (id) => {
-      this.setState({id: id});
-
-      return toList()
-  }
-
 render() {
     let navbar = (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -76,6 +71,10 @@ render() {
         </nav>
     );
 
+    let taskElement =(
+        <AccountElement onSubmit={this.toInfo}/>
+    )
+
     let addTask = (
         <div id="addTask" style={{display:"none"}}>
           <Add onSubmit={this.newAcc} />
@@ -92,7 +91,7 @@ render() {
         navbar,
         <TaskBoard accounts={this.state.accounts} />,
         addTask,
-        taskList
+        taskList,
     ];
   }
 }

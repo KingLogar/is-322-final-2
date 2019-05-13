@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { toInfo } from './../functions/Functions';
 
 class AccountElement extends Component{
+
 
     render() {
 
@@ -11,7 +13,7 @@ class AccountElement extends Component{
             {console.log(this.props.name)}
             <div className='taskBoard-element-title'>Balance: { this.props.bal }</div>
             <br/>
-            <button type="button" onClick= {  }>Details</button>
+            <button type="button" value={this.props.id} onClick= { toInfo(this.props.id) }>Details</button>
             </div>)
     }
 }
