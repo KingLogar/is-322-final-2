@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import TaskBoard from './taskBoard/index';
 import axios from 'axios';
 import Add from './Add';
-import { toGridView, toTaskList, toAddTask } from './navbarNavigation';
-import TaskList from "./taskList/TaskList";
+import { toGridView, toAddTask } from './navbarNavigation';
+import TaskBoard from './taskBoard/index';
+
 
 class App extends Component {
 
   state = {
     accounts: [],
-    newTaskID: 0
+    transactions: [],
+    newID: 0
   };
 
   componentDidMount() {
@@ -17,125 +18,65 @@ class App extends Component {
   }
 
   getData() {
-    axios.get('https://my-json-server.typicode.com/bnissen24/Project2DB')
+    axios.get('https://my-json-server.typicode.com/bnissen24/Project2DB/accounts')
         .then(response => {
           this.setState({ accounts: response.data });
         }).catch(error => {
       this.setState({ errorMessage: error.message });
     });
+    axios.get('https://my-json-server.typicode.com/bnissen24/Project2DB/transactions')
+        .then(response => {
+            this.setState({transactions: response.data});
+        }).catch(error => {
+            this.setState({errorMessage: error.message});
+    });
   }
+  //<PageTabs accounts={this.state.accounts}/>
 
-  taskMovingAction = {
-    startOnclick: (id) => {
-      let tasks = this.state.tasks;
-      for (let task of tasks) {
-        if (task.id === id) {
-          task.column = "in-progress";
-        }
-      }
-      this.setState({tasks});
-    },
-    sendBackOnclick: (id) => {
-      let tasks = this.state.tasks;
-      for (let task of tasks) {
-        if (task.id === id) {
-          task.column = "todo";
-        }
-      }
-      this.setState({tasks});
-    },
-    reviewOnclick: (id) => {
-      let tasks = this.state.tasks;
-      for (let task of tasks) {
-        if (task.id === id) {
-          task.column = "review";
-        }
-      }
-      this.setState({tasks});
-    },
-    backToWorkOnclick: (id) => {
-      let tasks = this.state.tasks;
-      for (let task of tasks) {
-        if (task.id === id) {
-          task.column = "in-progress";
-        }
-      }
-      this.setState({tasks});
-    },
-    doneOnclick: (id) => {
-      let tasks = this.state.tasks;
-      for (let task of tasks) {
-        if (task.id === id) {
-          task.column = "done";
-        }
-      }
-      this.setState({tasks});
-    },
-    reviewAgainOnclick: (id) => {
-      let tasks = this.state.tasks;
-      for (let task of tasks) {
-        if (task.id === id) {
-          task.column = "review";
-        }
-      }
-      this.setState({tasks});
+    newAcc = (name) => {
+
+        this.setState({
+            newID: this.state.accounts.length + 1
+        });
+        this.state.accounts.push({
+            _id: this.state.newID, //unless this breaks something
+            name: name,
+            balance: 1000
+        });
+        this.state.transactions.push({
+            accountId: this.state.newID,
+            type: "deposit",
+            amount: 1000,
+            name: "Account Opened"
+        });
     }
-  };
-
-  newTask = (taskName,type) => {
-    console.log(this.state.tasks);
-    this.state.tasks.push({
-      id: this.state.newTaskID,
-      title: taskName,
-      type: type,
-      column: "todo"
-    });
-    this.setState({
-      newTaskID: this.state.newTaskID + 1
-    });
-  }
-
   render() {
     let navbar = (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <a className="navbar-brand" href="#">My Todo List</a>
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
+            <a className="navbar-brand" href="#">My Accounts</a>
 
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav mr-auto">
-              <li className="nav-item active">
-                <button type="button" className="nav-link btn btn-light ml-3" onClick={toGridView} >Grid View <span className="sr-only">(current)</span></button>
-              </li>
-              <li className="nav-item">
-                <button className="nav-link btn btn-light ml-1" onClick={toTaskList}>Task List</button>
-              </li>
-              <li className="nav-item">
-                <button className="nav-link btn btn-light ml-1" onClick={toAddTask}>Add Task</button>
-              </li>
-            </ul>
-          </div>
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul className="navbar-nav mr-auto">
+                    <li className="nav-item active">
+                        <button type="button" className="nav-link btn btn-light ml-3" onClick={toGridView} >Accounts View<span className="sr-only">(current)</span></button>
+                    </li>
+                    <li className="nav-item">
+                        <button className="nav-link btn btn-light ml-1" onClick={toAddTask}>Add Account</button>
+                    </li>
+                </ul>
+            </div>
         </nav>
-    );
-
-    let taskList = (
-        <div id="taskList" style={{display:"none"}}>
-            <TaskList tasks={this.state.tasks} />
-        </div>
     );
 
     let addTask = (
         <div id="addTask" style={{display:"none"}}>
-          <Add onSubmit={this.newTask} />
+          <Add onSubmit={this.newAcc} />
         </div>
     );
 
     return [
         navbar,
-        <TaskBoard t={this.state.tasks} action={this.taskMovingAction}/>,
-        taskList,
+        <TaskBoard accounts={this.state.accounts} />,
         addTask
     ];
   }
