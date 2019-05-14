@@ -4,7 +4,6 @@ import Add from './Add';
 import { toGridView, toAddTask, toList } from './navbarNavigation';
 import TaskBoard from './taskBoard/index';
 import TaskList from './taskList/TaskList';
-import AccountElement from './taskBoard/taskElements';
 
 
 class App extends Component {
@@ -71,10 +70,6 @@ render() {
         </nav>
     );
 
-    let taskElement =(
-        <AccountElement onSubmit={this.toInfo}/>
-    )
-
     let addTask = (
         <div id="addTask" style={{display:"none"}}>
           <Add onSubmit={this.newAcc} />
@@ -83,7 +78,7 @@ render() {
 
     let taskList = (
         <div id="taskList" style={{display:"none"}}>
-            <TaskList />
+            <TaskList accounts={this.state.accounts} transactions={this.state.transactions}/>
         </div>
     );
 

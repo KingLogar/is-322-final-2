@@ -6,14 +6,22 @@ import TaskItem from './TaskItem';
 class TaskList extends React.Component {
 
   state = {
-
+    log: []
   };
 
-  findAcc = (id) => {
-    //const taskIndex = this.props.tasks.findIndex(t => t.id === task.id);
-    //let taskList = this.props.tasks;
-    //taskList.splice(taskIndex, 1);
+  //Will I really need this??
+  findAcc = (account) => {
+
+      const acc = this.props.accounts.find(a => a.id === account.id);
+
+      return acc;
   };
+
+  findLog = (account) => {
+      const log = this.props.transactions.filter(b => b.accountId === account.id);
+
+      this.setState({log: log});
+  }
 
   updateResults = () => {
 
@@ -21,7 +29,7 @@ class TaskList extends React.Component {
 
 
   render() {
-    /*
+
 
     const tasks = (this.state.filteredTasks.length) ? this.state.filteredTasks : this.props.tasks;
 
@@ -63,7 +71,7 @@ class TaskList extends React.Component {
         <button onClick={this.updateResults}>Refine</button>
       </div>
     </div>);
-    */
+
     return (
 
         <div id="sort"> { }
