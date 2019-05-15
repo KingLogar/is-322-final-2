@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Add from './Add';
-import { toGridView, toAddTask } from './navbarNavigation';
+import { toGridView, toAddTask, toList } from './navbarNavigation';
 import TaskBoard from './taskBoard/index';
+import TaskList from './taskList/TaskList';
 
 
 class App extends Component {
@@ -10,7 +11,7 @@ class App extends Component {
   state = {
     accounts: [],
     transactions: [],
-    newID: 0
+    newID: 0,
   };
 
   componentDidMount() {
@@ -33,9 +34,9 @@ class App extends Component {
   }
   //<PageTabs accounts={this.state.accounts}/>
 
-    newAcc = (name) => {
+   newAcc = (name) => {
 
-        this.setState({
+       this.setState({
             newID: this.state.accounts.length + 1
         });
         this.state.accounts.push({
@@ -49,8 +50,9 @@ class App extends Component {
             amount: 1000,
             name: "Account Opened"
         });
-    }
-  render() {
+    };
+
+render() {
     let navbar = (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <a className="navbar-brand" href="#">My Accounts</a>
@@ -74,10 +76,17 @@ class App extends Component {
         </div>
     );
 
+    let taskList = (
+        <div id="taskList" style={{display:"none"}}>
+            <TaskList accounts={this.state.accounts} transactions={this.state.transactions}/>
+        </div>
+    );
+
     return [
         navbar,
         <TaskBoard accounts={this.state.accounts} />,
-        addTask
+        addTask,
+        taskList,
     ];
   }
 }
