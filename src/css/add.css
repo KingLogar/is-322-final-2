@@ -17,6 +17,8 @@ input {
 }
 select{
     border-radius: 25px;
+    margin-left: 30%;
+    margin-right: 30%;
 }
 .title {
     font-size: 30px;

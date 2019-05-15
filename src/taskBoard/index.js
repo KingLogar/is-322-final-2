@@ -12,7 +12,7 @@ class AccountBoard extends Component{
         for (let account of accounts) {
 
             accountsArr.push(
-                <Element.AccountElement title={account.name} bal={account.balance} id={account._id} />
+                <Element.AccountElement title={account.name} bal={account.balance} id={account._id} accounts={this.props.accounts}/>
                 );
             }
 

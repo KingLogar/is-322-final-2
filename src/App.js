@@ -32,7 +32,6 @@ class App extends Component {
             this.setState({errorMessage: error.message});
     });
   }
-  //<PageTabs accounts={this.state.accounts}/>
 
    newAcc = (name) => {
 
@@ -56,7 +55,10 @@ render() {
     let navbar = (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <a className="navbar-brand" href="#">My Accounts</a>
-
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+            </button>
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item active">
@@ -64,6 +66,9 @@ render() {
                     </li>
                     <li className="nav-item">
                         <button className="nav-link btn btn-light ml-1" onClick={toAddTask}>Add Account</button>
+                    </li>
+                    <li className="nav-item">
+                        <button className="nav-link btn btn-light ml-1" onClick={toList}>Details</button>
                     </li>
                 </ul>
             </div>
@@ -84,7 +89,7 @@ render() {
 
     return [
         navbar,
-        <TaskBoard accounts={this.state.accounts} />,
+        <TaskBoard accounts={this.state.accounts} transactions={this.state.transactions}/>,
         addTask,
         taskList,
     ];
