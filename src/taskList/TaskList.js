@@ -1,87 +1,91 @@
 
 import React from 'react';
 
-import TaskItem from './TaskItem';
+
+import './PageTabs.css';
+
 
 class TaskList extends React.Component {
 
+
   state = {
-    log: []
+
+    log: [],
+
+    account: ''
+
   };
 
-  //Will I really need this??
-  findAcc = (account) => {
 
-      const acc = this.props.accounts.find(a => a.id === account.id);
 
-      return acc;
-  };
+  getTransactions = () => {
 
-  findLog = (account) => {
-      const log = this.props.transactions.filter(b => b.accountId === account.id);
+    let account = this.state.account;
 
-      this.setState({log: log});
+    let list = this.props.transactions.filter(list => list.accountId === account.id);
+
+
+
+
+    this.setState({log: list})
+
   }
 
-  updateResults = () => {
 
-};
+  todoCards = this.state.log.map(record => {
+
+    return (<li>
+
+      {record.name} <br />
+
+      {record.type} <br />
+
+      {record.amount} <br />
+
+    </li>);
+
+  });
+
+
+  options = this.props.accounts.map(account=> {
+
+    return(<option value={account.id} onClick={this.getTransactions(account)}>{account.name}</option>)
+
+  });
 
 
   render() {
 
+    return (<div class="board">
 
-    const tasks = (this.state.filteredTasks.length) ? this.state.filteredTasks : this.props.tasks;
-
-    const taskItems = tasks.map(task => {
-      return <TaskItem task={task} key={task.id} markDone={this.markDone} />
-    });
-
-    let sort = (<div id="container">
-      <span id="left">
-        <h3>Sort</h3>
-        <select value={this.setState.sort} onChange={(e) => this.setState({ sort: e.target.value })}>
-          <option value="Default">Pick An Option</option>
-          <option value="Title">Title</option>
-          <option value="Status">Status</option>
-          <option value="Type">Type</option>
-        </select>
-      </span>
-      <span id="center">
-        <h3>Status</h3>
-        <select value={this.setState.filterB} onChange={(e) => this.setState({ filterB: e.target.value })}>
-          <option value="Default">Pick An Option</option>
-          <option value="todo">To do</option>
-          <option value="In-Progress">In Progress</option>
-          <option value="Review">Review</option>
-          <option value="Done">Done</option>
-        </select>
-      </span>
-      <span id="right">
-        <h3>Type</h3>
-        <select value={this.setState.filterA} onChange={(e) => this.setState({ filterA: e.target.value })}>
-          <option value="Default">Pick An Option</option>
-          <option value="Task">Task</option>
-          <option value="Feature">Feature</option>
-          <option value="Review">Review</option>
-          <option value="Done">Done</option>
-        </select>
-      </span>
       <div>
-        <button onClick={this.updateResults}>Refine</button>
+
+        <select value={this.setState.account} onChange={(e) => this.setState({account: e.target.value})}>
+
+          <option value="default">Pick an Option...</option>
+
+          {this.options}
+
+        </select>
+
       </div>
-    </div>);
 
-    return (
+      <div>
 
-        <div id="sort"> { }
-          <ul className="task-list list-group">
-            {  }
-          </ul>
-        </div>
-    )
+        <h1>History</h1>
+
+        <ul>
+
+          {this.todoCards}
+
+        </ul>
+
+      </div>
+
+    </div>)
+
   }
 
-}
+};
 
-export default TaskList;
+export default TaskList
